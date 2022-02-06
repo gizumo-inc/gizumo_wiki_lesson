@@ -1,3 +1,17 @@
 <template lang="html">
-  <router-view />
+  <div>
+    <category-post />
+    <category-list />
+  </div>
 </template>
+
+<script>
+import { CategoryList, CategoryPost } from '@Components/molecules';
+
+export default {
+  components: {
+    CategoryList,
+    CategoryPost,
+  },
+};
+</script>
