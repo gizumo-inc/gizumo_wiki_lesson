@@ -14,6 +14,10 @@
 import { CategoryList, CategoryPost } from '@Components/molecules';
 
 export default {
+  components: {
+    CategoryList,
+    CategoryPost,
+  },
   data() {
     return {
       theads: ['カテゴリー名'],
@@ -28,10 +32,6 @@ export default {
         delete: false,
       },
     };
-  },
-  components: {
-    CategoryList,
-    CategoryPost,
   },
 };
 </script>
