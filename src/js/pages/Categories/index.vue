@@ -4,7 +4,7 @@
     <category-list
       :theads="theads"
       :categories="categories"
-      :deleteCategoryName="deleteCategoryName"
+      :delete-category-name="deleteCategoryName"
       :access="access"
     />
   </div>
