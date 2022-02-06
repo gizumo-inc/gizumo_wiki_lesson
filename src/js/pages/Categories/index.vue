@@ -1,7 +1,10 @@
 <template lang="html">
-  <div>
-    <category-post />
+  <div class="category-area">
+    <category-post
+      class="category-post"
+    />
     <category-list
+      class="category-list"
       :theads="theads"
       :categories="categories"
       :delete-category-name="deleteCategoryName"
@@ -33,3 +36,21 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .category-area {
+    display: flex;
+    height: 87vh;
+  }
+
+  .category-post {
+    width: 40%;
+    border-right: 1px solid #ccc;
+    padding-right: 2%;
+  }
+
+  .category-list {
+    width: 60%;
+    margin-left: 2%;
+  }
+</style>
