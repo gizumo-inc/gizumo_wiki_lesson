@@ -28,7 +28,7 @@ export default {
       categories: [],
       deleteCategoryName: 'hogehoge',
       access: {
-        delete: false,
+        delete: true,
         create: true,
       },
     };
