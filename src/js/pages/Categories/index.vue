@@ -2,6 +2,7 @@
   <div class="category-area">
     <category-post
       class="category-post"
+      :access="access"
     />
     <category-list
       class="category-list"
@@ -28,6 +29,7 @@ export default {
       deleteCategoryName: 'hogehoge',
       access: {
         delete: false,
+        create: true,
       },
     };
   },
