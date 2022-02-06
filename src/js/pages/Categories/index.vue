@@ -21,17 +21,15 @@ export default {
   data() {
     return {
       theads: ['カテゴリー名'],
-      categories: [
-        {
-          id: 1,
-          name: 'hogehoge',
-        },
-      ],
+      categories: [],
       deleteCategoryName: 'hogehoge',
       access: {
         delete: false,
       },
     };
+  },
+  created() {
+    this.categories = [{ id: 1, name: 'hoge' }];
   },
 };
 </script>
