@@ -16,6 +16,7 @@
 
 <script>
 import { CategoryList, CategoryPost } from '@Components/molecules';
+import categories from './categories.json';
 
 export default {
   components: {
@@ -34,7 +35,7 @@ export default {
     };
   },
   created() {
-    this.categories = [{ id: 1, name: 'hoge' }];
+    this.categories = categories;
   },
 };
 </script>
