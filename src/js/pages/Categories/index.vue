@@ -28,11 +28,12 @@ export default {
       theads: ['カテゴリー名'],
       categories: [],
       deleteCategoryName: 'hogehoge',
-      access: {
-        delete: true,
-        create: true,
-      },
     };
+  },
+  computed: {
+    access() {
+      return this.$store.getters['auth/access'];
+    },
   },
   created() {
     this.categories = categories;
