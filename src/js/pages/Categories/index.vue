@@ -16,7 +16,6 @@
 
 <script>
 import { CategoryList, CategoryPost } from '@Components/molecules';
-import categories from './categories.json';
 
 export default {
   components: {
@@ -26,7 +25,6 @@ export default {
   data() {
     return {
       theads: ['カテゴリー名'],
-      categories: [],
       deleteCategoryName: 'hogehoge',
     };
   },
@@ -34,9 +32,12 @@ export default {
     access() {
       return this.$store.getters['auth/access'];
     },
+    categories() {
+      return this.$store.state.categories.categoryList;
+    },
   },
   created() {
-    this.categories = categories;
+    this.$store.dispatch('categories/getAllCategories');
   },
 };
 </script>
