@@ -6,6 +6,7 @@ export default {
     loading: false,
     errorMessage: '',
     doneMessage: '',
+    category: '',
     categoryList: [],
   },
   mutations: {
@@ -20,6 +21,9 @@ export default {
     clearMessage(state) {
       state.errorMessage = '';
       state.doneMessage = '';
+    },
+    udpateValue(state, categoryName) {
+      state.category = categoryName;
     },
   },
   actions: {
@@ -42,6 +46,9 @@ export default {
     },
     clearMessage({ commit }) {
       commit('clearMessage');
+    },
+    udpateValue({ commit }, categoryName) {
+      commit('udpateValue', categoryName);
     },
   },
 };

@@ -4,7 +4,9 @@
       class="category-post"
       :error-message="errorMessage"
       :access="access"
+      :category="category"
       @clearMessage="clearMessage"
+      @updateValue="updateValue"
     />
     <category-list
       class="category-list"
@@ -40,6 +42,9 @@ export default {
     categories() {
       return this.$store.state.categories.categoryList;
     },
+    category() {
+      return this.$store.state.categories.category;
+    },
   },
   created() {
     this.$store.dispatch('categories/getAllCategories');
@@ -47,6 +52,10 @@ export default {
   methods: {
     clearMessage() {
       this.$store.dispatch('categories/clearMessage');
+    },
+    updateValue($event) {
+      const categoryName = $event.target.value ? $event.target.value : '';
+      this.$store.dispatch('categories/udpateValue', categoryName);
     },
   },
 };
