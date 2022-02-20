@@ -2,7 +2,9 @@
   <div class="category-area">
     <category-post
       class="category-post"
+      :error-message="errorMessage"
       :access="access"
+      @clearMessage="clearMessage"
     />
     <category-list
       class="category-list"
@@ -29,6 +31,9 @@ export default {
     };
   },
   computed: {
+    errorMessage() {
+      return this.$store.state.categories.errorMessage;
+    },
     access() {
       return this.$store.getters['auth/access'];
     },
@@ -38,6 +43,11 @@ export default {
   },
   created() {
     this.$store.dispatch('categories/getAllCategories');
+  },
+  methods: {
+    clearMessage() {
+      this.$store.dispatch('categories/clearMessage');
+    },
   },
 };
 </script>

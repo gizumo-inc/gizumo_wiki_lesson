@@ -5,6 +5,7 @@ export default {
   state: {
     loading: false,
     errorMessage: '',
+    doneMessage: '',
     categoryList: [],
   },
   mutations: {
@@ -15,6 +16,10 @@ export default {
     failRequest(state, { message }) {
       state.errorMessage = message;
       state.loading = false;
+    },
+    clearMessage(state) {
+      state.errorMessage = '';
+      state.doneMessage = '';
     },
   },
   actions: {
@@ -34,6 +39,9 @@ export default {
       }).catch((err) => {
         commit('failRequest', { message: err.message });
       });
+    },
+    clearMessage({ commit }) {
+      commit('clearMessage');
     },
   },
 };
