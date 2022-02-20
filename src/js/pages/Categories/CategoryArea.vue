@@ -4,6 +4,7 @@
       class="category-post"
       :error-message="errorMessage"
       :access="access"
+      :disabled="disabled"
       :category="category"
       @clearMessage="clearMessage"
       @handleSubmit="handleSubmit"
