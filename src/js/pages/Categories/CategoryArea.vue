@@ -6,6 +6,7 @@
       :access="access"
       :category="category"
       @clearMessage="clearMessage"
+      @handleSubmit="handleSubmit"
       @updateValue="updateValue"
     />
     <category-list
@@ -42,6 +43,9 @@ export default {
     categories() {
       return this.$store.state.categories.categoryList;
     },
+    disabled() {
+      return this.$store.state.categories.loading;
+    },
     category() {
       return this.$store.state.categories.category;
     },
@@ -52,6 +56,14 @@ export default {
   methods: {
     clearMessage() {
       this.$store.dispatch('categories/clearMessage');
+    },
+    handleSubmit() {
+      if (this.disabled) return;
+      this.$store.dispatch('categories/postCategory').then(() => {
+        this.$router.push({
+          path: '/categories',
+        });
+      });
     },
     updateValue($event) {
       const categoryName = $event.target.value ? $event.target.value : '';
