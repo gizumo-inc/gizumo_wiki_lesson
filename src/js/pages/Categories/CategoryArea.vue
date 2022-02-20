@@ -61,9 +61,7 @@ export default {
     handleSubmit() {
       if (this.disabled) return;
       this.$store.dispatch('categories/postCategory').then(() => {
-        this.$router.push({
-          path: '/categories',
-        });
+        this.$store.dispatch('categories/getAllCategories');
       });
     },
     updateValue($event) {
