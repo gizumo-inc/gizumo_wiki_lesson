@@ -17,6 +17,7 @@
       :categories="categories"
       :delete-category-name="deleteCategoryName"
       :access="access"
+      @clearMessage="clearMessage"
       @openModal="openModal"
       @handleClick="handleClick"
     />

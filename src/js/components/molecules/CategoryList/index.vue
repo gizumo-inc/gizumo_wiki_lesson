@@ -123,6 +123,7 @@ export default {
     },
     handleClick() {
       if (!this.access.delete) return;
+      this.$emit('clearMessage');
       this.$emit('handleClick');
     },
   },
