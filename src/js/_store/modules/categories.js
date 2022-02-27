@@ -8,6 +8,8 @@ export default {
     doneMessage: '',
     category: '',
     categoryList: [],
+    deleteCategoryId: null,
+    deleteCategoryName: '',
   },
   getters: {
     targetCategory: state => state.category,
@@ -30,6 +32,10 @@ export default {
     },
     toggleLoading(state) {
       state.loading = !state.loading;
+    },
+    confirmDeleteCategory(state, { categoryId, categoryName }) {
+      state.deleteCategoryId = categoryId;
+      state.deleteCategoryName = categoryName;
     },
   },
   actions: {
@@ -74,6 +80,9 @@ export default {
           reject();
         });
       });
+    },
+    confirmDeleteCategory({ commit }, { categoryId, categoryName }) {
+      commit('confirmDeleteCategory', { categoryId, categoryName });
     },
   },
 };

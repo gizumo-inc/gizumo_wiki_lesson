@@ -16,6 +16,7 @@
       :categories="categories"
       :delete-category-name="deleteCategoryName"
       :access="access"
+      @openModal="openModal"
     />
   </div>
 </template>
@@ -67,6 +68,12 @@ export default {
     updateValue($event) {
       const categoryName = $event.target.value ? $event.target.value : '';
       this.$store.dispatch('categories/udpateValue', categoryName);
+    },
+    openModal(categoryId, categoryName) {
+      this.$store.dispatch(
+        'categories/confirmDeleteCategory',
+        { categoryId, categoryName },
+      );
     },
   },
 };
