@@ -5,7 +5,12 @@ export default {
   state: {
     loading: false,
     errorMessage: '',
+    doneMessage: '',
+    category: '',
     categoryList: [],
+  },
+  getters: {
+    targetCategory: state => state.category,
   },
   mutations: {
     doneGetAllCategories(state, { categories }) {
@@ -15,6 +20,16 @@ export default {
     failRequest(state, { message }) {
       state.errorMessage = message;
       state.loading = false;
+    },
+    clearMessage(state) {
+      state.errorMessage = '';
+      state.doneMessage = '';
+    },
+    udpateValue(state, categoryName) {
+      state.category = categoryName;
+    },
+    toggleLoading(state) {
+      state.loading = !state.loading;
     },
   },
   actions: {
@@ -33,6 +48,31 @@ export default {
         commit('doneGetAllCategories', { categories });
       }).catch((err) => {
         commit('failRequest', { message: err.message });
+      });
+    },
+    clearMessage({ commit }) {
+      commit('clearMessage');
+    },
+    udpateValue({ commit }, categoryName) {
+      commit('udpateValue', categoryName);
+    },
+    postCategory({ commit, rootGetters }) {
+      return new Promise((resolve, reject) => {
+        commit('toggleLoading');
+        const data = new URLSearchParams();
+        data.append('name', rootGetters['categories/targetCategory']);
+        axios(rootGetters['auth/token'])({
+          method: 'POST',
+          url: '/category',
+          data,
+        }).then(() => {
+          commit('toggleLoading');
+          resolve();
+        }).catch((err) => {
+          commit('toggleLoading');
+          commit('failRequest', { message: err.message });
+          reject();
+        });
       });
     },
   },
