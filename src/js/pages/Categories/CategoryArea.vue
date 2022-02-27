@@ -3,6 +3,7 @@
     <category-post
       class="category-post"
       :error-message="errorMessage"
+      :done-message="doneMessage"
       :access="access"
       :disabled="disabled"
       :category="category"
@@ -17,6 +18,7 @@
       :delete-category-name="deleteCategoryName"
       :access="access"
       @openModal="openModal"
+      @handleClick="handleClick"
     />
   </div>
 </template>
@@ -39,6 +41,9 @@ export default {
   computed: {
     errorMessage() {
       return this.$store.state.categories.errorMessage;
+    },
+    doneMessage() {
+      return this.$store.state.categories.doneMessage;
     },
     access() {
       return this.$store.getters['auth/access'];
@@ -79,6 +84,11 @@ export default {
         { categoryId, categoryName },
       );
       this.toggleModal();
+    },
+    handleClick() {
+      this.$store.dispatch('categories/deleteCategory');
+      this.toggleModal();
+      this.$store.dispatch('categories/getAllCategories');
     },
   },
 };
