@@ -23,16 +23,17 @@
 
 <script>
 import { CategoryList, CategoryPost } from '@Components/molecules';
+import Mixins from '@Helpers/mixins';
 
 export default {
   components: {
     CategoryList,
     CategoryPost,
   },
+  mixins: [Mixins],
   data() {
     return {
       theads: ['カテゴリー名'],
-      deleteCategoryName: 'hogehoge',
     };
   },
   computed: {
@@ -50,6 +51,9 @@ export default {
     },
     category() {
       return this.$store.state.categories.category;
+    },
+    deleteCategoryName() {
+      return this.$store.state.categories.deleteCategoryName;
     },
   },
   created() {
@@ -74,6 +78,7 @@ export default {
         'categories/confirmDeleteCategory',
         { categoryId, categoryName },
       );
+      this.toggleModal();
     },
   },
 };
