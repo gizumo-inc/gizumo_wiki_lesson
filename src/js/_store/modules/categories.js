@@ -95,19 +95,22 @@ export default {
       commit('confirmDeleteCategory', { categoryId, categoryName });
     },
     deleteCategory({ commit, rootGetters }) {
-      commit('clearMessage');
-      const data = new URLSearchParams();
-      data.append('id', rootGetters['categories/deleteCategoryId']);
-      axios(rootGetters['auth/token'])({
-        method: 'DELETE',
-        url: `/category/${rootGetters['categories/deleteCategoryId']}`,
-        data,
-      }).then(() => {
-        commit('resetDeleteCategoryId');
-        commit('resetDeleteCategoryName');
-        commit('displayDoneMessage', { message: 'カテゴリを削除しました' });
-      }).catch((err) => {
-        commit('failRequest', { message: err.message });
+      return new Promise((resolve) => {
+        commit('clearMessage');
+        const data = new URLSearchParams();
+        data.append('id', rootGetters['categories/deleteCategoryId']);
+        axios(rootGetters['auth/token'])({
+          method: 'DELETE',
+          url: `/category/${rootGetters['categories/deleteCategoryId']}`,
+          data,
+        }).then(() => {
+          commit('resetDeleteCategoryId');
+          commit('resetDeleteCategoryName');
+          commit('displayDoneMessage', { message: 'カテゴリを削除しました' });
+          resolve();
+        }).catch((err) => {
+          commit('failRequest', { message: err.message });
+        });
       });
     },
   },
